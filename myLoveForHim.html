@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Anniversary💕</title>
+  <link rel="stylesheet" href="lovestyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <section id="section1" class="visible">
+    <h1>
+      <span>H</span>
+      <span>E</span>
+      <span>L</span>
+      <span>L</span>
+      <span>O</span>
+    </h1>
+  </section>
+
+  <section id="section2" class="hidden">
+  <p id="typewriter-text"></p>
+</section>
+  <section id="section3" class="hidden">
+  <p id="typewriter-text-3"></p>
+</section>
+
+
+
+  <script>
+  const section1 = document.getElementById('section1');
+  const section2 = document.getElementById('section2');
+  const section3 = document.getElementById('section3');
+  const typewriterText = document.getElementById('typewriter-text');
+  const typewriterText3 = document.getElementById('typewriter-text-3');
+
+  const fullText = "Welcome to this little web my dear Kaiser!";
+  const fullText3 = "HAPPY ANNIVERSARY!💕 beside your birthday, this day is one of the most important days to me. this 2 year passed in a blink of an eye and we have known each other for 730 days!! I am blessed and so gratful to have you here by my side as i said it for hundred of times. who could have even guess we gonna end up together.. And now, i am blessed with this feeling";
+
+  function typeWriter(text, element, speed = 50, callback = null) {
+    let i = 0;
+    element.textContent = "";
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(interval);
+        if (callback) callback();
+      }
+    }, speed);
+  }
+
+  // Click anywhere to go from Section 1 → Section 2
+  document.addEventListener('click', function handleClickOnce() {
+    section1.classList.remove('visible');
+    section1.classList.add('hidden');
+
+    section2.classList.remove('hidden');
+    section2.classList.add('visible');
+
+    setTimeout(() => {
+      typeWriter(fullText, typewriterText);
+    }, 500);
+
+    document.removeEventListener('click', handleClickOnce); // Prevent double triggers
+  });
+
+  // Click on Section 2 to show Section 3
+  section2.addEventListener('click', function () {
+    section2.classList.remove('visible');
+    section2.classList.add('hidden');
+
+    section3.classList.remove('hidden');
+    section3.classList.add('visible');
+
+    setTimeout(() => {
+      typeWriter(fullText3, typewriterText3);
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
